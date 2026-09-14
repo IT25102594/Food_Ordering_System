@@ -9,9 +9,8 @@ version = "0.0.1-SNAPSHOT"
 description = "Food_Ordering_System"
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
@@ -29,6 +28,7 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testAnnotationProcessor("org.projectlombok:lombok")
+    runtimeOnly("com.h2database:h2")
 }
 
 tasks.withType<Test> {
