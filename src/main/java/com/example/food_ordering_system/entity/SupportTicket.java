@@ -30,7 +30,6 @@ public class SupportTicket {
     private Order order;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "agent_id")
     private CustomerSupportAgent agent;
 
@@ -43,12 +42,15 @@ public class SupportTicket {
 
     @ColumnDefault("'open'")
     @Lob
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private String status;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false)
     private Instant createdAt;
+
+    @Column(name = "resolved_at")
+    private Instant resolvedAt;
 
 
 }

@@ -20,19 +20,19 @@ public class Restaurant {
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "street")
-    private String street;
+    @Column(name = "address_line", nullable = false)
+    private String addressLine;
 
-    @Column(name = "city", length = 100)
+    @Column(name = "city", nullable = false, length = 100)
     private String city;
 
     @ColumnDefault("0.00")
-    @Column(name = "avg_rating", precision = 3, scale = 2)
+    @Column(name = "avg_rating", nullable = false, precision = 3, scale = 2)
     private BigDecimal avgRating;
 
     @ColumnDefault("'pending'")
     @Lob
-    @Column(name = "approval_status")
+    @Column(name = "approval_status", nullable = false)
     private String approvalStatus;
 
 

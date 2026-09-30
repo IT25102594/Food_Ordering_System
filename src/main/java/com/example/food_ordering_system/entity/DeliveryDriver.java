@@ -30,7 +30,7 @@ public class DeliveryDriver {
 
     @ColumnDefault("'pending'")
     @Lob
-    @Column(name = "approval_status")
+    @Column(name = "approval_status", nullable = false)
     private String approvalStatus;
 
 

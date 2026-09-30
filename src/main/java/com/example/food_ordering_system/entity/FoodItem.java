@@ -19,9 +19,9 @@ public class FoodItem {
     @Column(name = "food_item_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "category_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.SET_NULL)
+    @JoinColumn(name = "category_id")
     private FoodCategory category;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -40,7 +40,7 @@ public class FoodItem {
     private String image;
 
     @ColumnDefault("0.00")
-    @Column(name = "avg_rating", precision = 3, scale = 2)
+    @Column(name = "avg_rating", nullable = false, precision = 3, scale = 2)
     private BigDecimal avgRating;
 
 

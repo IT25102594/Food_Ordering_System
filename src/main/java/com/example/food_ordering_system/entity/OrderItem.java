@@ -44,5 +44,8 @@ public class OrderItem {
     @Column(name = "price_at_order_time", nullable = false, precision = 10, scale = 2)
     private BigDecimal priceAtOrderTime;
 
+    @Column(name = "special_instructions")
+    private String specialInstructions;
+
 
 }

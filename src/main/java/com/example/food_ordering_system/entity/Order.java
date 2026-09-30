@@ -32,18 +32,28 @@ public class Order {
 
     @ColumnDefault("'placed'")
     @Lob
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private String status;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "placed_at")
+    @Column(name = "placed_at", nullable = false)
     private Instant placedAt;
 
     @Column(name = "delivery_address_snapshot", nullable = false)
     private String deliveryAddressSnapshot;
 
+    @Column(name = "delivery_instructions")
+    private String deliveryInstructions;
+
     @Column(name = "restaurant_to_customer_distance", precision = 6, scale = 2)
     private BigDecimal restaurantToCustomerDistance;
+
+    @ColumnDefault("0.00")
+    @Column(name = "delivery_fee", nullable = false, precision = 6, scale = 2)
+    private BigDecimal deliveryFee;
+
+    @Column(name = "total_amount", nullable = false, precision = 10, scale = 2)
+    private BigDecimal totalAmount;
 
 
 }

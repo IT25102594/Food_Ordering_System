@@ -27,15 +27,31 @@ public class Address {
     @Column(name = "label", length = 50)
     private String label;
 
+    @Column(name = "address_line", nullable = false)
+    private String addressLine;
+
+    @Column(name = "city", nullable = false, length = 100)
+    private String city;
+
+    @Column(name = "postal_code", length = 20)
+    private String postalCode;
+
     @Column(name = "latitude", precision = 10, scale = 8)
     private BigDecimal latitude;
 
     @Column(name = "longitude", precision = 11, scale = 8)
     private BigDecimal longitude;
 
+    @Column(name = "default_instructions")
+    private String defaultInstructions;
+
     @ColumnDefault("0")
-    @Column(name = "is_default")
+    @Column(name = "is_default", nullable = false)
     private Boolean isDefault;
+
+    @ColumnDefault("1")
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive;
 
 
 }
