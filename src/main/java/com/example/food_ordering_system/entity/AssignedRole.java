@@ -30,7 +30,7 @@ public class AssignedRole {
     private Restaurant restaurant;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "assigned_at")
+    @Column(name = "assigned_at", nullable = false)
     private Instant assignedAt;
 
 

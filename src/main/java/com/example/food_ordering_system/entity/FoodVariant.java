@@ -31,11 +31,11 @@ public class FoodVariant {
     private BigDecimal price;
 
     @ColumnDefault("-1")
-    @Column(name = "stock_quantity")
+    @Column(name = "stock_quantity", nullable = false)
     private Integer stockQuantity;
 
     @ColumnDefault("1")
-    @Column(name = "availability_status")
+    @Column(name = "availability_status", nullable = false)
     private Boolean availabilityStatus;
 
 

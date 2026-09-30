@@ -12,31 +12,24 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
-@Table(name = "receives_request")
-public class ReceivesRequest {
+@Table(name = "order_status_history")
+public class OrderStatusHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "broadcast_id", nullable = false)
+    @Column(name = "history_id", nullable = false)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "request_id", nullable = false)
-    private DeliveryRequest request;
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "driver_id", nullable = false)
-    private DeliveryDriver driver;
-
-    @ColumnDefault("'offered'")
-    @Lob
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = false, length = 20)
     private String status;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "requested_at", nullable = false)
-    private Instant requestedAt;
+    @Column(name = "changed_at", nullable = false)
+    private Instant changedAt;
 
 
 }

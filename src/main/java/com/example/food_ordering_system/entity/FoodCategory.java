@@ -26,7 +26,7 @@ public class FoodCategory {
     private String name;
 
     @ColumnDefault("1")
-    @Column(name = "availability_status")
+    @Column(name = "availability_status", nullable = false)
     private Boolean availabilityStatus;
 
 

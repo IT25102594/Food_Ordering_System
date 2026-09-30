@@ -3,6 +3,7 @@ package com.example.food_ordering_system.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -20,7 +21,9 @@ public class SystemAdmin {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "admin_id", nullable = false)
     private User users;
-    @Column(name = "is_super_admin")
+
+    @ColumnDefault("0")
+    @Column(name = "is_super_admin", nullable = false)
     private Boolean isSuperAdmin;
 
 

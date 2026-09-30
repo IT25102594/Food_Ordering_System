@@ -32,7 +32,7 @@ public class Refund {
     private String reason;
 
     @ColumnDefault("'pending'")
-    @Column(name = "status", length = 50)
+    @Column(name = "status", nullable = false, length = 50)
     private String status;
 
     @Column(name = "processed_at")
