@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+//comment
 @Repository
 public interface RestaurantReviewRepository extends JpaRepository<RestaurantReview, Long> {//save() and deleteById()
     List<RestaurantReview> findByRestaurantId(Long restaurantId);

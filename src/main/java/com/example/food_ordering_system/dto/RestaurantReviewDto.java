@@ -16,7 +16,7 @@ public class RestaurantReviewDto {
 
     public Integer getRating() { return rating; }
     public void setRating(Integer rating) { this.rating = rating; }
-
+//comment
     public String getComment() { return comment; }
     public void setComment(String comment) { this.comment = comment; }
 }

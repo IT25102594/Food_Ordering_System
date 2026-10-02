@@ -10,7 +10,7 @@ public class RestaurantReview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+//comment
     private Long userId;
     private Long restaurantId;
     private Integer rating;

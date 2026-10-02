@@ -10,7 +10,7 @@ public class SupportTicket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+//comment
     private Long userId;
     private String subject;
 
