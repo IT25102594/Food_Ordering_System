@@ -1,56 +1,50 @@
 package com.example.food_ordering_system.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import java.time.LocalDateTime;
 
-import java.time.Instant;
-
-@Getter
-@Setter
 @Entity
 @Table(name = "support_tickets")
 public class SupportTicket {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ticket_id", nullable = false)
-    private Integer id;
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.SET_NULL)
-    @JoinColumn(name = "order_id")
-    private Order order;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "agent_id")
-    private CustomerSupportAgent agent;
-
-    @Column(name = "subject", nullable = false, length = 150)
+    private Long userId;
     private String subject;
 
-    @Lob
-    @Column(name = "description", nullable = false)
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    @ColumnDefault("'open'")
-    @Lob
-    @Column(name = "status", nullable = false)
-    private String status;
+    private String status; // e.g., OPEN, IN_PROGRESS, RESOLVED
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at", nullable = false)
-    private Instant createdAt;
+    public SupportTicket() {}
 
-    @Column(name = "resolved_at")
-    private Instant resolvedAt;
+    public SupportTicket(Long userId, String subject, String description, String status) {
+        this.userId = userId;
+        this.subject = subject;
+        this.description = description;
+        this.status = status;
+    }
 
+    // Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
+    public Long getUserId() { return userId; }
+    public void setUserId(Long userId) { this.userId = userId; }
+
+    public String getSubject() { return subject; }
+    public void setSubject(String subject) { this.subject = subject; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }
