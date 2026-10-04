@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -20,11 +21,10 @@ public class SystemAdmin {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "admin_id", nullable = false)
-    private User users;
+    private User user; // Renamed from users to user
 
     @ColumnDefault("0")
     @Column(name = "is_super_admin", nullable = false)
-    private Boolean isSuperAdmin;
-
+    private Boolean superAdmin; // Renamed to superAdmin
 
 }
