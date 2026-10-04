@@ -30,6 +30,9 @@ public class FoodVariant {
     @Column(name = "price", nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @ColumnDefault("-1")
     @Column(name = "stock_quantity", nullable = false)
     private Integer stockQuantity;

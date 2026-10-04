@@ -32,7 +32,6 @@ public class CategoryRequest {
     private String suggestedCategoryName;
 
     @ColumnDefault("'pending'")
-    @Lob
     @Column(name = "status", nullable = false)
     private String status;
 

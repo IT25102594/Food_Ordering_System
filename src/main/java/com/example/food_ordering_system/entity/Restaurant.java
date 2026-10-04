@@ -26,14 +26,22 @@ public class Restaurant {
     @Column(name = "city", nullable = false, length = 100)
     private String city;
 
+    @Column(name = "logo_url")
+    private String logoUrl;
+
+    @Column(name = "banner_url")
+    private String bannerUrl;
+
     @ColumnDefault("0.00")
     @Column(name = "avg_rating", nullable = false, precision = 3, scale = 2)
     private BigDecimal avgRating;
 
     @ColumnDefault("'pending'")
-    @Lob
     @Column(name = "approval_status", nullable = false)
     private String approvalStatus;
+
+    @Column(name = "is_open", nullable = false)
+    private Boolean isOpen = false;
 
 
 }

@@ -31,7 +31,6 @@ public class Order {
     private Address deliveryAddress;
 
     @ColumnDefault("'placed'")
-    @Lob
     @Column(name = "status", nullable = false)
     private String status;
 

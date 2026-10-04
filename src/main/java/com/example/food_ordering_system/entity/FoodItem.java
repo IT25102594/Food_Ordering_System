@@ -36,9 +36,6 @@ public class FoodItem {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "image")
-    private String image;
-
     @ColumnDefault("0.00")
     @Column(name = "avg_rating", nullable = false, precision = 3, scale = 2)
     private BigDecimal avgRating;
