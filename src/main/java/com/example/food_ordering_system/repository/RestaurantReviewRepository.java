@@ -2,11 +2,8 @@ package com.example.food_ordering_system.repository;
 
 import com.example.food_ordering_system.entity.RestaurantReview;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
-import java.util.List;
-//comment
-@Repository
-public interface RestaurantReviewRepository extends JpaRepository<RestaurantReview, Long> {//save() and deleteById()
-    List<RestaurantReview> findByRestaurantId(Long restaurantId);
+public interface RestaurantReviewRepository extends JpaRepository<RestaurantReview, Integer> {
+    Optional<RestaurantReview> findByUser_IdAndRestaurant_Id(Integer userId, Integer restaurantId);
 }
