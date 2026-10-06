@@ -31,11 +31,11 @@ public class ReceivesRequest {
 
     @ColumnDefault("'offered'")
     @Lob
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private String status;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "requested_at")
+    @Column(name = "requested_at", nullable = false)
     private Instant requestedAt;
 
 

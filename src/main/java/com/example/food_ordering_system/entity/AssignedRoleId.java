@@ -3,14 +3,14 @@ package com.example.food_ordering_system.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Lob;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 @Embeddable
 public class AssignedRoleId implements Serializable {
@@ -21,7 +21,6 @@ public class AssignedRoleId implements Serializable {
     @Column(name = "restaurant_id", nullable = false)
     private Integer restaurantId;
 
-    @Lob
     @Column(name = "role_type", nullable = false)
     private String roleType;
 

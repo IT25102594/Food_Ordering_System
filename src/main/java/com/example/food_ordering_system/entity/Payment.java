@@ -39,7 +39,7 @@ public class Payment {
 
     @ColumnDefault("'pending'")
     @Lob
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private String status;
 
     @Column(name = "paid_at")
