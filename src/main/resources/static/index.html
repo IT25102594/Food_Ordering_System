@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rider Dispatch & Delivery Management</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --primary-accent: #3b82f6;
+            --success-accent: #10b981;
+            --warning-accent: #f59e0b;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            min-height: 100vh;
+        }
+
+        .header-section {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 2.5rem 0 4rem 0;
+            border-bottom-left-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .main-container {
+            margin-top: -2.5rem;
+        }
+
+        .action-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 1.25rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .bg-icon-primary { background: #e0e7ff; color: #4338ca; }
+        .bg-icon-warning { background: #fef3c7; color: #b45309; }
+        .bg-icon-success { background: #d1fae5; color: #047857; }
+
+        .form-control, .form-select {
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            font-weight: 500;
+        }
+
+        .form-control:focus, .form-select:focus {
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+            border-color: var(--primary-accent);
+        }
+
+        .btn-custom {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            transition: all 0.2s ease;
+        }
+
+        .console-card {
+            background: #0f172a;
+            border-radius: 1.25rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .console-header {
+            background: #1e293b;
+            padding: 0.75rem 1.25rem;
+            border-bottom: 1px solid #334155;
+        }
+
+        .console-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .terminal-output {
+            font-family: 'JetBrains Mono', monospace;
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 1.25rem;
+            font-size: 0.9rem;
+            max-height: 280px;
+            overflow-y: auto;
+            margin: 0;
+        }
+
+        .badge-pattern {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<div class="header-section text-center">
+    <div class="container">
+        <div class="d-inline-flex align-items-center mb-3">
+            <span class="badge-pattern text-white">
+                <i class="fa-solid fa-microchip me-2 text-warning"></i>Factory Design Pattern Active
+            </span>
+        </div>
+        <h1 class="fw-bold display-5 mb-2"><i class="fa-solid fa-motorcycle me-3"></i>Rider Dispatch Console</h1>
+        <p class="text-white-50 mb-0">SE2030 Delivery Management System • Live Backend Demonstration</p>
+    </div>
+</div>
+
+<!-- Main Forms Container -->
+<div class="container main-container mb-5">
+    <div class="row g-4">
+
+        <!-- 1. Assign Rider Card -->
+        <div class="col-lg-4">
+            <div class="action-card p-4 h-100">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="card-icon-wrapper bg-icon-primary">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-0">Assign Rider</h5>
+                        <small class="text-muted">POST /api/deliveries/assign</small>
+                    </div>
+                </div>
+
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-secondary">ORDER ID</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-hashtag"></i></span>
+                            <input type="text" id="assignOrderId" class="form-control" placeholder="e.g. ORD-1001">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label small fw-semibold text-secondary">DELIVERY ADDRESS</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-location-dot"></i></span>
+                            <input type="text" id="assignAddress" class="form-control" placeholder="e.g. Colombo 03">
+                        </div>
+                    </div>
+                    <button type="button" onclick="assignRider()" class="btn btn-primary btn-custom w-100 shadow-sm">
+                        <i class="fa-solid fa-paper-plane me-2"></i>Dispatch Order
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 2. Update Status Card -->
+        <div class="col-lg-4">
+            <div class="action-card p-4 h-100">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="card-icon-wrapper bg-icon-warning">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-0">Update Status</h5>
+                        <small class="text-muted">PUT /api/deliveries/update-status</small>
+                    </div>
+                </div>
+
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-secondary">ORDER ID</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-hashtag"></i></span>
+                            <input type="text" id="updateOrderId" class="form-control" placeholder="e.g. ORD-1001">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label small fw-semibold text-secondary">NEW STATUS</label>
+                        <select id="updateStatus" class="form-select">
+                            <option value="DISPATCHED">🛵 DISPATCHED</option>
+                            <option value="DELIVERED">✅ DELIVERED</option>
+                            <option value="CANCELLED">❌ CANCELLED</option>
+                        </select>
+                    </div>
+                    <button type="button" onclick="updateStatus()" class="btn btn-warning text-dark btn-custom w-100 shadow-sm">
+                        <i class="fa-solid fa-arrows-spin me-2"></i>Update Progress
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 3. Track Order Card -->
+        <div class="col-lg-4">
+            <div class="action-card p-4 h-100">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="card-icon-wrapper bg-icon-success">
+                        <i class="fa-solid fa-magnifying-glass-location"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-0">Track Order</h5>
+                        <small class="text-muted">GET /api/deliveries/track/{orderId}</small>
+                    </div>
+                </div>
+
+                <form>
+                    <div class="mb-4">
+                        <label class="form-label small fw-semibold text-secondary">ORDER ID</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-hashtag"></i></span>
+                            <input type="text" id="trackOrderId" class="form-control" placeholder="e.g. ORD-1001">
+                        </div>
+                    </div>
+                    <div style="height: 28px;" class="d-none d-lg-block"></div>
+                    <button type="button" onclick="trackOrder()" class="btn btn-success btn-custom w-100 shadow-sm">
+                        <i class="fa-solid fa-crosshairs me-2"></i>Track Real-time
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Live Output Terminal -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="console-card">
+                <div class="console-header d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="console-dot bg-danger"></span>
+                        <span class="console-dot bg-warning"></span>
+                        <span class="console-dot bg-success"></span>
+                        <span class="text-white-50 small ms-2 fw-semibold"><i class="fa-solid fa-terminal me-2"></i>Live System Response Terminal</span>
+                    </div>
+                    <small class="text-muted" id="timestamp">Ready</small>
+                </div>
+                <pre id="output" class="terminal-output">// System initialized and connected to Spring Boot backend.
+// Awaiting requests...</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const BASE_URL = "/api/deliveries";
+
+    function printOutput(data) {
+        document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+        document.getElementById('timestamp').textContent = "Last updated: " + new Date().toLocaleTimeString();
+    }
+
+    function assignRider() {
+        const orderId = document.getElementById('assignOrderId').value.trim();
+        const address = document.getElementById('assignAddress').value.trim();
+
+        if (!orderId || !address) {
+            alert("⚠️ Please enter both Order ID and Address!");
+            return;
+        }
+
+        fetch(`${BASE_URL}/assign?orderId=${encodeURIComponent(orderId)}&address=${encodeURIComponent(address)}`, {
+            method: 'POST'
+        })
+        .then(res => res.json())
+        .then(data => printOutput(data))
+        .catch(err => printOutput({ status: "Error", message: err.message }));
+    }
+
+    function updateStatus() {
+        const orderId = document.getElementById('updateOrderId').value.trim();
+        const status = document.getElementById('updateStatus').value;
+
+        if (!orderId) {
+            alert("⚠️ Please enter Order ID!");
+            return;
+        }
+
+        fetch(`${BASE_URL}/update-status?orderId=${encodeURIComponent(orderId)}&status=${encodeURIComponent(status)}`, {
+            method: 'PUT'
+        })
+        .then(async res => {
+            const isJson = res.headers.get('content-type')?.includes('application/json');
+            return isJson ? res.json() : { response: await res.text() };
+        })
+        .then(data => printOutput(data))
+        .catch(err => printOutput({ status: "Error", message: err.message }));
+    }
+
+    function trackOrder() {
+        const orderId = document.getElementById('trackOrderId').value.trim();
+
+        if (!orderId) {
+            alert("⚠️ Please enter Order ID!");
+            return;
+        }
+
+        fetch(`${BASE_URL}/track/${encodeURIComponent(orderId)}`)
+        .then(res => {
+            if (!res.ok) throw new Error("Order not found or invalid ID");
+            return res.json();
+        })
+        .then(data => printOutput(data))
+        .catch(err => printOutput({ status: "Error", message: err.message }));
+    }
+</script>
+
+</body>
+</html>
